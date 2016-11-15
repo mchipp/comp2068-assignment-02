@@ -1,3 +1,9 @@
+// App Name: Assignment 2
+// Author: Mark Chipp 200180985 <mark.chipp@live.ca, mark.chipp@mygeorgian.ca>
+// Created: 14-Nov-2016
+// Modified: 14-Nov-2016
+// Food tracking and fitness application, desktop and mobile platform compatible.
+
 var express = require('express');
 var router = express.Router();
 
