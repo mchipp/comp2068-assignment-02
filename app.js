@@ -10,6 +10,80 @@ var users = require('./routes/users');
 
 var app = express();
 
+// connect to MongoDB
+var mongoose = require('mongoose');
+var config = require('./config/globalVars');
+mongoose.connect(config.db);
+
+// passport configuration for authentication
+var passport = require('passport');
+var session = require('express-session');
+var flash = require('connect-flash');
+var localStrategy = require('passport-local').Strategy;
+
+// enable the app to use these passport classes
+app.use(flash());
+
+
+// configure sessions
+app.use(session( {
+  secret: config.secret,
+  resave: true,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// connect passport to the Account model to talk to MongoDB
+var Account = require('./models/account');
+passport.use(Account.createStrategy());
+
+// facebook auth configuration
+var facebookStrategy = require('passport-facebook').Strategy;
+
+passport.use(new facebookStrategy({
+  clientID: config.ids.facebook.clientID,
+  clientSecret: config.ids.facebook.clientSecret,
+  callbackURL: config.ids.facebook.callbackURL
+},
+function(accessToken, refreshToken, profile, cb)
+{
+  // check if mongodb already has this user
+  Account.findOne({ oauthID: profile.id }, function(err, user) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      if (user !== null) {
+        // this user has already registered via facebook, so continue
+        cb(null, user);
+      }
+      else {
+        // user is new to us, so save them to the accounts collection
+        user = new Account({
+          oauthID: profile.id,
+          username: profile.displayName,
+          created: Date.now()
+        });
+        
+        user.save(function(err) {
+          if (err) {
+            console.log(err);
+          }
+          else {
+            cb(null, user);
+          }
+        });
+      }
+    }
+  });
+}));
+
+// manage sessions through the db
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

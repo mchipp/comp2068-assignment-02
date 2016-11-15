@@ -22,9 +22,16 @@
         <!--this is the default navigation bar-->
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/about">Login</a></li>
-                <li><a href="/projects">Register</a></li>
-                <li><a href="/projects">Logout</a></li>
+            <% if (!user) { %>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            <% }
+            else { %>
+                <li><a href="/logout">Logout</a></li>
+            <% } %>
             </ul>
+            <% if (user) { %>
+                <div class="navbar-text pull-right">Welcome, <%= user.username %>.</div>
+            <% } %>
         </div>
     </nav>
