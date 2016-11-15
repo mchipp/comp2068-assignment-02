@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+
+        <!--this section handles the mobile navigation menu button-->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">FoodFit</a>
+            <button class="navbar-toggle collapsed" data-toggle="collapse" type="button" data-target="#navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!--this is the default navigation bar-->
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/about">Login</a></li>
+                <li><a href="/projects">Register</a></li>
+                <li><a href="/projects">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
