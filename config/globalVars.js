@@ -1,10 +1,12 @@
-// Created by Mark Chipp 200180985 <mark.chipp@live.ca, mark.chipp@mygeorgian.ca>
-// Created on 14-Nov-2016
+// App Name: Assignment 2
+// Author: Mark Chipp 200180985 <mark.chipp@live.ca, mark.chipp@mygeorgian.ca>
+// Created: 14-Nov-2016
+// Modified: 14-Nov-2016
 
 
 //global variables for the application
 module.exports = {
-  db: 'mongodb://uname:pass@ds044989.mlab.com:44989/comp2068-thu',
+  db: 'mongodb://fsHefds34:|jH+||#~kd1`@ds153657.mlab.com:53657/comp2086-assignment-02',
   secret: 's8df7gyh6jr544j5h6g7f8d90gtbhrnjet6y5u4i3',
   ids: {
     facebook: {
