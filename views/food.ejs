@@ -1,0 +1,22 @@
+<% include partials/header.ejs %>
+
+<h1><%= title %></h1>
+<a href="/food/add">Add a food item</a>
+<table class="table table-striped">
+  <tr>
+    <th>Food</th>
+    <th>Servings</th>
+    <th>Calories</th>
+    <th>Delete</th>
+  </tr>
+  <% for (var i=0; i < food.length; i++) { %>
+    <tr>
+      <td><%= food[i].food %></td>
+      <td><%= food[i].servings %></td>
+      <td><%= food[i].calories %></td>
+      <td><a href="/food/delete/<%= food[i]._id %>" class="confirmation">Delete</a></td>
+    </tr>
+  <% } %>
+</table>
+
+<% include partials/footer.ejs %>
