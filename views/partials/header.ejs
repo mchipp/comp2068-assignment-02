@@ -2,16 +2,18 @@
 <html>
   <head>
     <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <meta name="description" content="Mark Chipp - Junior Programmer"></meta>
+
+    <!-- Styleheets -->
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
-
         <!--this section handles the mobile navigation menu button-->
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">FoodFit</a>
+            <a class="navbar-brand" href="/">Food &amp; Fitness</a>
             <button class="navbar-toggle collapsed" data-toggle="collapse" type="button" data-target="#navbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -34,4 +36,5 @@
                 <div class="navbar-text pull-right">Welcome, <%= user.username %>.</div>
             <% } %>
         </div>
+        
     </nav>

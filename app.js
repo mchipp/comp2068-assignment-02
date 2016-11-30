@@ -1,8 +1,8 @@
 // App Name: Assignment 2
 // Author: Mark Chipp 200180985 <mark.chipp@live.ca, mark.chipp@mygeorgian.ca>
 // Created: 14-Nov-2016
-// Modified: 14-Nov-2016
-// Food tracking and fitness application, desktop and mobile platform compatible.
+// Modified: 29-Nov-2016
+// Food tracking and fitness application
 
 var express = require('express');
 var path = require('path');
@@ -104,6 +104,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/add-food', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -135,6 +136,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
