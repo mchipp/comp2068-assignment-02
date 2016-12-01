@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <meta name="description" content="Mark Chipp - Junior Programmer"></meta>
+
+    <!-- Styleheets -->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+  </head>
+  <body id="main">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <!--this section handles the mobile navigation menu button-->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Fit Food</a>
+            <button class="navbar-toggle collapsed" data-toggle="collapse" type="button" data-target="#navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!--this is the default navigation bar-->
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/food">Foods</a></li>
+            <% if (!user) { %>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            <% }
+            else { %>
+                <li><a href="/logout">Logout</a></li>
+            <% } %>
+            </ul>
+            <% if (user) { %>
+                <div class="navbar-text pull-right">Welcome, <%= user.username %>.</div>
+            <% } %>
+        </div>
+        
+    </nav>

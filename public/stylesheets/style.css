@@ -10,6 +10,12 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+#main {
+  background-image: url("/images/background.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
 a {
   color: #00B7FF;
 }
