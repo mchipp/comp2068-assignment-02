@@ -59,7 +59,7 @@ router.get('/login', function(req, res, next) {
 
 /* POST login page */
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/', //update this when content created
+  successRedirect: '/food', //update this when content created
   failureRedirect: '/login',
   failureMessage: 'Invalid Login' // stored in session.messages
 }));

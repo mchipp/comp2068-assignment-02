@@ -18,6 +18,12 @@ var foodSchema = new mongoose.Schema({
   },
   calories: {
     type: Number
+  },
+  userID: {
+    type: String
+  },
+  addedDate: {
+    type: Date
   }
 });
 

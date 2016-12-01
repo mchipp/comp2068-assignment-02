@@ -21,7 +21,7 @@ function isLoggedIn(req, res, next) {
 }
 
 // GET handler for /food
-router.get('/', function(req, res, next) {
+router.get('/', isLoggedIn, function(req, res, next) {
 
   // use Food model to run a query
   Food.find(function(err, food) {
@@ -34,7 +34,7 @@ router.get('/', function(req, res, next) {
       res.render('food', {
         title: 'Food log',
         food: food,
-      user: req.user
+        user: req.user
       });
     }
   });
@@ -57,7 +57,9 @@ router.post('/add', isLoggedIn, function(req, res, next) {
   Food.create( {
     food: req.body.food,
     servings: req.body.servings,
-    calories: req.body.calories
+    calories: req.body.calories,
+    userID: req.session.passport.user,
+    addedDate: req.body.addedDate
   }, function(err, Food) {
     if(err) {
       console.log(err);
@@ -66,6 +68,21 @@ router.post('/add', isLoggedIn, function(req, res, next) {
     else {
       res.redirect('/food');
     }
+  });
+});
+
+/* GET /food/delete/:_id - deletemselected food item */
+router.get('/delete/:_id', isLoggedIn, function(req, res, next) {
+  //read the id value from the url
+  var _id = req.params._id;
+
+  //delete the food item
+  Food.remove( { _id: _id }, function(err) {
+    if (err) {
+      console.log(err);
+      res.render('error', {message: 'Delete Error'});
+    }
+    res.redirect('/food');
   });
 });
 

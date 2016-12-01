@@ -1,7 +1,7 @@
 <% include partials/header.ejs %>
 
 <h1><%= title %></h1>
-<a href="/food/add">Add a food item</a>
+<% if (user) { %><a href="/food/add">Add a food item</a><% } %>
 <table class="table table-striped">
   <tr>
     <th>Food</th>
@@ -10,12 +10,14 @@
     <th>Delete</th>
   </tr>
   <% for (var i=0; i < food.length; i++) { %>
-    <tr>
-      <td><%= food[i].food %></td>
-      <td><%= food[i].servings %></td>
-      <td><%= food[i].calories %></td>
-      <td><a href="/food/delete/<%= food[i]._id %>" class="confirmation">Delete</a></td>
-    </tr>
+	<% if (food[i].userID == user.username) { %>
+		<tr>
+			<td><%= food[i].food %></td>
+			<td><%= food[i].servings %></td>
+			<td><%= food[i].calories %></td>
+			<td><a href="/food/delete/<%= food[i]._id %>" class="confirmation">Delete</a></td>
+		</tr>
+  	<% } %>
   <% } %>
 </table>
 
