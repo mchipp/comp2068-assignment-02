@@ -46,31 +46,31 @@ app.use(passport.session());
 var Account = require('./models/account');
 passport.use(Account.createStrategy());
 
-// facebook auth configuration
-var facebookStrategy = require('passport-facebook').Strategy;
+// github authorization
+var githubStrategy = require('passport-github').Strategy;
 
-passport.use(new facebookStrategy({
-  clientID: config.ids.facebook.clientID,
-  clientSecret: config.ids.facebook.clientSecret,
-  callbackURL: config.ids.facebook.callbackURL
+passport.use(new githubStrategy({
+  clientID: config.ids.github.clientID,
+  clientSecret: config.ids.github.clientSecret,
+  callbackURL: config.ids.github.callbackURL
 },
 function(accessToken, refreshToken, profile, cb)
 {
-  // check if mongodb already has this user
+  // check if mongodb already contains user
   Account.findOne({ oauthID: profile.id }, function(err, user) {
     if (err) {
       console.log(err);
     }
     else {
       if (user !== null) {
-        // this user has already registered via facebook, so continue
-        cb(null, user);
+        // user already registered via github, continue
+      cb(null, user);
       }
       else {
-        // user is new to us, so save them to the accounts collection
+        // user is new, save to ccounts collection
         user = new Account({
           oauthID: profile.id,
-          username: profile.displayName,
+          username: profile.username,
           created: Date.now()
         });
         

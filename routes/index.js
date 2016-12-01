@@ -71,17 +71,17 @@ router.get('/logout', function(req, res, next) {
 });
 
 /* GET facebook */
-router.get('/facebook', passport.authenticate('facebook'),
+router.get('/github', passport.authenticate('github'),
 function(req, res, next){
 });
 
 /* GET /facebook/callback */
-router.get('/facebook/callback', passport.authenticate('facebook', {
+router.get('/github/callback', passport.authenticate('github', {
   failureRedirect: '/login',
   failureMessage: 'Invalid Login'
 }), function(req, res, next) {
-  // show the footfit users page (update this when content ready)
-  res.redirect('/');
+  // show the food & fitness food db page
+  res.redirect('/food');
 });
 
 module.exports = router;

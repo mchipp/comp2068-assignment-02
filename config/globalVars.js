@@ -9,10 +9,10 @@ module.exports = {
   db: 'mongodb://fsHefds34:|jH+||#~kd1`@ds153657.mlab.com:53657/comp2086-assignment-02',
   secret: 's8df7gyh6jr544j5h6g7f8d90gtbhrnjet6y5u4i3',
   ids: {
-    facebook: {
-      clientID: '1613638918932493',
-      clientSecret: 'fc6c29e18eb133e53064ed1554cb3e5e',
-      callbackURL: 'http://localhost:3000/facebook/callback'
+    github: {
+      clientID: '8d8366229cab1def0028',
+      clientSecret: '964368b93ff68e359eaa2344249d410909048690',
+      callbackURL: 'http://localhost:3000/github/callback'
     }
   }
 };
