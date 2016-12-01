@@ -24,6 +24,15 @@ var foodSchema = new mongoose.Schema({
   },
   addedDate: {
     type: Date
+  },
+  carbs: {
+    type: Number
+  },
+  fat: {
+    type: Number
+  },
+  protein: {
+    type: Number
   }
 });
 

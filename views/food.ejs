@@ -7,6 +7,10 @@
     <th>Food</th>
     <th>Servings</th>
     <th>Calories</th>
+    <th>Carbohydrates</th>
+    <th>Fat</th>
+    <th>Protein</th>
+    <th>Edit</th>
     <th>Delete</th>
   </tr>
   <% for (var i=0; i < food.length; i++) { %>
@@ -15,6 +19,10 @@
 			<td><%= food[i].food %></td>
 			<td><%= food[i].servings %></td>
 			<td><%= food[i].calories %></td>
+			<td><%= food[i].carbs %></td>
+			<td><%= food[i].fat %></td>
+			<td><%= food[i].protein %></td>
+			<td><a href="/food/edit/<%= food[i]._id %>" class="confirmation">Edit</a></td>
 			<td><a href="/food/delete/<%= food[i]._id %>" class="confirmation">Delete</a></td>
 		</tr>
   	<% } %>
