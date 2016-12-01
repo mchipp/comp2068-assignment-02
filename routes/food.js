@@ -59,7 +59,10 @@ router.post('/add', isLoggedIn, function(req, res, next) {
     servings: req.body.servings,
     calories: req.body.calories,
     userID: req.session.passport.user,
-    addedDate: req.body.addedDate
+    addedDate: req.body.addedDate,
+    carbs: req.body.carbs,
+    fat: req.body.fat,
+    protein: req.body.protein
   }, function(err, Food) {
     if(err) {
       console.log(err);
@@ -83,6 +86,58 @@ router.get('/delete/:_id', isLoggedIn, function(req, res, next) {
       res.render('error', {message: 'Delete Error'});
     }
     res.redirect('/food');
+  });
+});
+
+/* GET /food/:_id - show the edit form */
+router.get('/edit/:_id', isLoggedIn, function(req, res, next) {
+  // get the id from the url
+  var _id = req.params._id;
+
+  // look up the selected Food document with this _id
+  Food.findById(_id, function(err, food) {
+    if(err) {
+      console.log(err);
+      res.render('error', {message: 'Error loading edit form'});
+    }
+    else {
+      // load the edit form
+      res.render('edit-food', {
+          title: 'Edit Food',
+          food: food,
+          user: req.user
+      });
+    }
+  })
+});
+
+/* POST /food/:_id - save form to process Food updates */
+router.post('/edit/:_id', isLoggedIn, function(req, res, next) {
+  // get the id from the url
+  var _id = req.params._id;
+
+  // instantiate a new Food object & populate it from the form
+  var food = new Food( {
+    _id: _id,
+    food: req.body.food,
+    servings: req.body.servings,
+    calories: req.body.calories,
+    userID: req.session.passport.user,
+    addedDate: req.body.addedDate,
+    carbs: req.body.carbs,
+    fat: req.body.fat,
+    protein: req.body.protein
+  });
+
+  // save the update using mongoose
+  Food.update( { _id: _id}, food, function(err) {
+    if(err){
+      console.log(err);
+      res.render('error', {message: 'Could not Update Food'});
+    }
+    else {
+      res.redirect('/food');
+    }
   });
 });
 
